@@ -5,12 +5,12 @@
 
 packages:
 - completed:
-    hackage: fast-tagsoup-utf8-only-1.0.5@sha256:9292c8ff275c08b88b6013ccc410182552f180904214a07ad4db932ab462aaa1,1651
+    hackage: fast-tagsoup-1.0.14@sha256:5aacc569a6ab9633077bb181f6bd6a4dde3ebc7a8b844d2fe7b1920a0cf0ba9f,1343
     pantry-tree:
-      size: 242
-      sha256: e11a37330ae114279efd501f718e8a570c3d0763c890183531a1d81610262d11
+      size: 223
+      sha256: a0ff31f55168fb9f07cfbafe9d1b4e59afd0b2c44c11befd836c6d7250a955c9
   original:
-    hackage: fast-tagsoup-utf8-only-1.0.5
+    hackage: fast-tagsoup-1.0.14
 - completed:
     hackage: text-regex-replace-0.1.1.4@sha256:58d96b4e5caec8bf9dd2ca6eaa206fe5bce0fd162759c5e102a92c05f6bd5ebc,1547
     pantry-tree:
