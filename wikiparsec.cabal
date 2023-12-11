@@ -15,6 +15,17 @@ category:            Text
 build-type:          Simple
 cabal-version:       >=1.8
 
+flag library-only
+  -- This builds wikiparsec as a library without building the executable,
+  -- meaning that downstream packages don't have to depend on the full
+  -- set of dependencies.  By default, everything will be built,
+  -- but you can install the library alone with
+  --
+  --     cabal install wikiparsec -flibrary-only
+  description: Build without the executable, for downstream packages
+  manual: True
+  default: False
+
 Library
   exposed-modules:     Text.Language.Normalize,
                        Text.MediaWiki.WikiText,
@@ -31,25 +42,27 @@ Library
   build-depends:       HUnit,
                        base,
                        base-unicode-symbols,
-                       classy-prelude ==1.4.*,
-                       string-conversions ==0.4.*,
+                       classy-prelude,
+                       string-conversions,
                        utf8-string,
                        stringsearch,
-                       text-icu ==0.7.*,
+                       text-icu,
                        split,
                        text, bytestring, containers,
                        unicode-show,
-                       attoparsec ==0.13.*,
-                       parsec ==3.1.*,
+                       attoparsec,
+                       parsec,
                        mtl,
                        tagsoup,
-                       fast-tagsoup-utf8-only,
-                       hexpat ==0.20.*,
+                       fast-tagsoup,
+                       hexpat,
                        aeson,
                        text-regex-replace
 
 
 Executable wiki2text
+  if flag(library-only)
+    buildable: False
   ghc-options:
     -threaded
     -O2
@@ -61,26 +74,29 @@ Executable wiki2text
                        Data.LanguageType, Data.LanguageNames,
                        Text.MediaWiki.WikiText,
                        WikiPrelude
-  build-depends:       base,
-                       base-unicode-symbols,
-                       classy-prelude ==1.4.*,
-                       string-conversions ==0.4.*,
-                       utf8-string,
-                       stringsearch,
-                       text-icu ==0.7.*,
-                       split,
-                       text, bytestring, containers,
-                       unicode-show,
-                       attoparsec ==0.13.*,
-                       parsec ==3.1.*,
-                       mtl,
-                       tagsoup,
-                       fast-tagsoup-utf8-only,
-                       hexpat ==0.20.*,
-                       aeson,
-                       text-regex-replace
+  if !flag(library-only)
+    build-depends:       base,
+                         base-unicode-symbols,
+                         classy-prelude,
+                         string-conversions,
+                         utf8-string,
+                         stringsearch,
+                         text-icu,
+                         split,
+                         text, bytestring, containers,
+                         unicode-show,
+                         attoparsec,
+                         parsec,
+                         mtl,
+                         tagsoup,
+                         fast-tagsoup,
+                         hexpat,
+                         aeson,
+                         text-regex-replace
 
 Executable wp-summary
+  if flag(library-only)
+    buildable: False
   ghc-options:
     -threaded
     -O2
@@ -92,26 +108,29 @@ Executable wp-summary
                        Data.LanguageType, Data.LanguageNames,
                        Text.MediaWiki.WikiText,
                        WikiPrelude
-  build-depends:       base,
-                       base-unicode-symbols,
-                       classy-prelude ==1.4.*,
-                       string-conversions ==0.4.*,
-                       utf8-string,
-                       stringsearch,
-                       text-icu ==0.7.*,
-                       split,
-                       text, bytestring, containers,
-                       unicode-show,
-                       attoparsec ==0.13.*,
-                       parsec ==3.1.*,
-                       mtl,
-                       tagsoup,
-                       fast-tagsoup-utf8-only,
-                       hexpat ==0.20.*,
-                       aeson,
-                       text-regex-replace
+  if !flag(library-only)
+    build-depends:       base,
+                         base-unicode-symbols,
+                         classy-prelude,
+                         string-conversions,
+                         utf8-string,
+                         stringsearch,
+                         text-icu,
+                         split,
+                         text, bytestring, containers,
+                         unicode-show,
+                         attoparsec,
+                         parsec,
+                         mtl,
+                         tagsoup,
+                         fast-tagsoup,
+                         hexpat,
+                         aeson,
+                         text-regex-replace
 
 Executable wp-links
+  if flag(library-only)
+    buildable: False
   ghc-options:
     -threaded
     -O2
@@ -123,27 +142,30 @@ Executable wp-links
                        Data.LanguageType, Data.LanguageNames,
                        Text.MediaWiki.WikiText,
                        WikiPrelude
-  build-depends:       base,
-                       base-unicode-symbols,
-                       classy-prelude ==1.4.*,
-                       string-conversions ==0.4.*,
-                       utf8-string,
-                       stringsearch,
-                       text-icu ==0.7.*,
-                       split,
-                       text, bytestring, containers,
-                       unicode-show,
-                       attoparsec ==0.13.*,
-                       parsec ==3.1.*,
-                       mtl,
-                       tagsoup,
-                       fast-tagsoup-utf8-only,
-                       hexpat ==0.20.*,
-                       aeson,
-                       text-regex-replace
+  if !flag(library-only)
+    build-depends:       base,
+                         base-unicode-symbols,
+                         classy-prelude,
+                         string-conversions,
+                         utf8-string,
+                         stringsearch,
+                         text-icu,
+                         split,
+                         text, bytestring, containers,
+                         unicode-show,
+                         attoparsec,
+                         parsec,
+                         mtl,
+                         tagsoup,
+                         fast-tagsoup,
+                         hexpat,
+                         aeson,
+                         text-regex-replace
 
 
 Executable wiktionary-parser
+  if flag(library-only)
+    buildable: False
   ghc-options:
     -threaded
     -O2
@@ -160,23 +182,23 @@ Executable wiktionary-parser
                        Text.MediaWiki.Wiktionary.German,
                        Text.Language.Normalize,
                        WikiPrelude
-  build-depends:       base,
-                       base-unicode-symbols,
-                       classy-prelude ==1.4.*,
-                       string-conversions ==0.4.*,
-                       utf8-string,
-                       stringsearch,
-                       text-icu ==0.7.*,
-                       split,
-                       text, bytestring, containers,
-                       unicode-show,
-                       attoparsec ==0.13.*,
-                       parsec ==3.1.*,
-                       mtl,
-                       tagsoup,
-                       fast-tagsoup-utf8-only,
-                       hexpat ==0.20.*,
-                       aeson,
-                       aeson-pretty,
-                       text-regex-replace
-
+  if !flag(library-only)
+    build-depends:       base,
+                         base-unicode-symbols,
+                         classy-prelude,
+                         string-conversions,
+                         utf8-string,
+                         stringsearch,
+                         text-icu,
+                         split,
+                         text, bytestring, containers,
+                         unicode-show,
+                         attoparsec,
+                         parsec,
+                         mtl,
+                         tagsoup,
+                         fast-tagsoup,
+                         hexpat,
+                         aeson,
+                         aeson-pretty,
+                         text-regex-replace

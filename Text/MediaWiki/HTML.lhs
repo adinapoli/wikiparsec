@@ -52,10 +52,9 @@ events, making it much like SAX for XML.
 > module Text.MediaWiki.HTML where
 > import WikiPrelude
 > import Text.HTML.TagSoup hiding (parseTags, renderTags)
-> import Text.HTML.TagSoup.Fast.Utf8Only
+> import Text.HTML.TagSoup.Fast
 
-We have a ByteString of HTML. We're going to leave it as a ByteString for a while,
-because `TagSoup.Fast.Utf8Only` works on ByteStrings of UTF-8.
+We have a ByteString of HTML.
 
 We run `parseTags` on the HTML to get a list of tag events, then run our
 function `extractFromTags`, which will give us the text contained within the
